@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+a{% load static %}
+{% block title %}
+ KNA Albums
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+
+	<div class="row">
+		<div class='col-12'>
+			<div class="alert alert-secondary my-sm-0" role="alert" style='min-height:auto'>
+				<span> {% include 'search/snippets/search-form.html' %}</span>
+			</div>
+		</div>
+    </div>
+		<div class='col-12 py-5 mx-0 my-sm-1'
+		 style='background: url({% static "media/album.jpg" %}); min-height:350px;color:#fff; text-align:center'>
+			<h1>Albums</h1>
+			<p><h3>The Most Inspiring Photos dating back to 1939</h3></p>
+	    </div>
+	
+	<div class="row with gutter">
+		<div class='col-12'>
+			<div id="album" class="album-list">
+				{% for album in albums %}
+				<div class="item">
+					<figure>
+						<a href="{{ album.get_absolute_url }}">
+						<img class='album-img' src="{% if album.image %}{{ album.image.url }}
+						{% else %}{% static "media/no_image.png" %}{% endif %}" 
+						img style="width:280px" class="img-fluid" alt="">
+						</a>
+						<figcaption><h5><a href="{{ album.get_absolute_url }}">{{ album.title }}</a></h5></figcaption>
+					</figure>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

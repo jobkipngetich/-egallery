@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} </title>
+
+    {% include 'base/css.html' %}
+
+
+</head>
+
+<body>
+
+    {% include 'base/navbar.html' %}
+
+    {% block content %}
+
+    {% endblock %}
+    {% include 'base/footer.html' %}
+    {% include 'base/js.html' %}
+
+    {% block scripts %}
+
+    {% endblock %}
+
+</body>
+
+</html>

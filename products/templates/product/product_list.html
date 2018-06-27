@@ -1,0 +1,61 @@
+﻿
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    KNA Portal: Gallery
+{% endblock %}
+
+{% block content %}
+    <div class='row py-1'>
+        <div class='col-12'>
+            <div class="alert alert-secondary my-sm-0" role="alert" style='min-height:auto'>
+            <span> {% include 'search/snippets/search-form.html' %}</span>
+            </div>
+        </div>
+    </div>
+ <div class="row py-0">
+    <div class='col-12 mr-auto'>
+        <div class="alert alert-secondary my-sm-0" role="alert">
+            <div class="top">
+            <h4>{% if album %}{{ album.title }}{% else %}<b><h4>Photos</h4></b>{% endif %}</h1>
+            {% for product in products %}</h4>{% endfor %}
+            <h5>Browse Kenyan beatiful heritage captured in our amazing photos</h5>
+        </div>
+        </div>
+    </div>
+</div>
+<div class= "container-fluid">
+<div class='row py-0'>
+    <div class='col-2 mr-auto my-1' >
+        <div class="alert alert-secondary bg-dark my-1" role="alert" 
+        style='min-height:500px'>
+            <b><h4>Albums</h4></b>
+            <ul>
+                <li {% if not album %}class="selected"{% endif %}>
+                    <a href="{% url "product:product_list" %}"><h6>All</h6></a>
+                </li>
+                {% for c in albums %}
+                <li {% if album.slug == c.slug %}class="selected"{% endif %}>
+                    <a href="{{ c.get_absolute_url }}"><b><h6>{{ c.title }}</h6></b></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div></div>
+
+    <div class='col-10 ml-auto'>
+        <div id="main" class="product-list">
+        
+            {% for product in products %}
+            <div class="item">
+                <a href="{{ product.get_absolute_url }}">
+                    <img src="{% if product.image %}{{ product.image.url }}
+                    {% else %}{% static "media/no_image.png" %}{% endif %}" 
+                    style="border-radius: 8px; padding: 5px;width: 270px;">
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </div></div>
+
+{% endblock %}
